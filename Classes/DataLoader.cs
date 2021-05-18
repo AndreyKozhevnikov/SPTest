@@ -10,7 +10,7 @@ namespace SpTest.Classes {
         public List<DataItem> LoadData() {
             var lst = new List<DataItem>();
             using (var reader= new StreamReader(@"..\..\Data\sp.csv")) {
-                
+                var factory = new DataItemFactory();
                 while(!reader.EndOfStream) {
                     var line = reader.ReadLine();
                     var values = line.Split(';');
@@ -19,7 +19,7 @@ namespace SpTest.Classes {
                     if(dt == "Date") {
                         continue;
                     }
-                    var item = new DataItem(dt, vl);
+                    var item = factory.CreateDataItem(dt, vl);
                 }
 
             }
