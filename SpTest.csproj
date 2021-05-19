@@ -53,6 +53,11 @@
     <Compile Include="Classes\DataItem.cs" />
     <Compile Include="Classes\DataItemFactory.cs" />
     <Compile Include="Classes\DataLoader.cs" />
+    <Compile Include="Classes\Exporter.cs" />
+    <Compile Include="Classes\ResultItem.cs" />
+    <Compile Include="Classes\ResultItemFactory.cs" />
+    <Compile Include="Classes\ResultToStringConverter.cs" />
+    <Compile Include="Tests\ResultToStringConverterTests.cs" />
     <Compile Include="Classes\Worker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
