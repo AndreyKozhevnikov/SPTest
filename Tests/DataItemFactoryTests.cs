@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using SpTest.Classes;
+using SpTest.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,6 +67,18 @@ namespace SpTest.Tests {
             //assert
             Assert.AreEqual(new DateTime(2021,5,1), res.Date);
             Assert.AreEqual(4173,85, res.Value);
+        }
+        [Test]
+        public void CreateDataItemFromStrings() {
+            //arrange
+            var lines = Resources.TextFile1;
+
+            var factory = CreateFactory();
+            //act
+            List<DataItem> res = factory.CreateListDataItemsFromString(lines);
+            //assert
+            Assert.AreEqual(2, res.Count);
+            Assert.Greater(res[1].Date, res[0].Date);
         }
     }
 }

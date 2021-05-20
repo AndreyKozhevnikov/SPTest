@@ -5,10 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SpTest.Classes {
-   public class Worker {
+    public class Worker {
         public void Work() {
-            var load = new DataLoader();
-            var lst = load.LoadData();
+            var fileWorker = new FileWorker();
+            var dataItemFactory = new DataItemFactory();
+            var load = new DataLoader(fileWorker,dataItemFactory, @"..\..\Data\sp.csv");
+            List<DataItem> lst = load.LoadData();
+            
         }
 
     }

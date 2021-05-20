@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq">
+      <HintPath>..\DXConverter\DXConverter\bin\Debug\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=3.10.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Deploy\Dll181\nunit.framework.dll</HintPath>
@@ -54,9 +57,17 @@
     <Compile Include="Classes\DataItemFactory.cs" />
     <Compile Include="Classes\DataLoader.cs" />
     <Compile Include="Classes\Exporter.cs" />
+    <Compile Include="Classes\FileWorker.cs" />
+    <Compile Include="Classes\IDataItemFactory.cs" />
+    <Compile Include="Classes\IFileWorker.cs" />
     <Compile Include="Classes\ResultItem.cs" />
     <Compile Include="Classes\ResultItemFactory.cs" />
     <Compile Include="Classes\ResultToStringConverter.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Tests\ResultToStringConverterTests.cs" />
     <Compile Include="Classes\Worker.cs" />
     <Compile Include="Program.cs" />
@@ -65,6 +76,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TextFile1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,18 +6,20 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SpTest.Classes {
-   public class DataLoader {
+    public class DataLoader {
+        IFileWorker fileWorker;
+        IDataItemFactory dataItemFactory;
+        string pathToFile;
+        public DataLoader(IFileWorker _fileWorker, IDataItemFactory _dataItemFactory,string _pathToFile) {
+            fileWorker = _fileWorker;
+            dataItemFactory = _dataItemFactory;
+            pathToFile = _pathToFile;
+        }
+    
+   
         public List<DataItem> LoadData() {
-            var lst = new List<DataItem>();
-            using (var reader= new StreamReader(@"..\..\Data\sp.csv")) {
-                var factory = new DataItemFactory();
-                while(!reader.EndOfStream) {
-                    var line = reader.ReadLine();
-                    var item = factory.CreateDataItemFromString(line);
-                    lst.Add(item);
-                }
-            }
-            return lst;
+            var inputString = fileWorker.StreamReaderReadToEnd(pathToFile);
+            return dataItemFactory.CreateListDataItemsFromString(inputString);
         }
     }
 }
