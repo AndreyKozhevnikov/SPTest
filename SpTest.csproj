@@ -58,7 +58,7 @@
     <Compile Include="Classes\DataItems\DataItem.cs" />
     <Compile Include="Classes\DataItems\DataItemFactory.cs" />
     <Compile Include="Classes\DataLoader.cs" />
-    <Compile Include="Classes\Exporter.cs" />
+    <Compile Include="Classes\ResultItem\ResultExporter.cs" />
     <Compile Include="Classes\FileWorker.cs" />
     <Compile Include="Classes\DataItems\IDataItemFactory.cs" />
     <Compile Include="Classes\IFileWorker.cs" />

@@ -54,8 +54,30 @@ namespace SpTest.Classes {
             //act
             var res = conv.ConvertResultList(lst);
             //assert
-            var expect = "05/19/2021;456.1;1.2;05/20/2021;2.2;3.3;05/21/2021;4.4;5.5;05/22/2021;44;S20;1;3;4;6.6;7.7" + Environment.NewLine +
-                "04/03/2022;456.1;1.2;05/20/2021;2.2;3.3;05/21/2021;4.4;5.5;05/22/2021;44;S20;1;3;4;6.6;7.7";
+            List<String> resV = new List<string>();
+            resV.Add("Date");
+            resV.Add("Price");
+            resV.Add("MaxPrice");
+            resV.Add("MaxPriceDate");
+            resV.Add("Result");
+            resV.Add("MaxResult");
+            resV.Add("MaxResultDate");
+            resV.Add("DrawDown");
+            resV.Add("MaxDrawDown");
+            resV.Add("MaxDrawDownDate");
+            resV.Add("InputValue");
+            resV.Add("State");
+            resV.Add("IsStateChanged");
+            resV.Add("SharesCount");
+            resV.Add("AddedShares");
+            resV.Add("CashAmount");
+            resV.Add("DiffFromMaxPricePercent");
+            
+            string resItem = string.Join(";", resV);
+            var expect = new List<string>();
+            expect.Add(resItem);
+            expect.Add("05/19/2021;456.1;1.2;05/20/2021;2.2;3.3;05/21/2021;4.4;5.5;05/22/2021;44;S20;1;3;4;6.6;7.7");
+            expect.Add("04/03/2022;456.1;1.2;05/20/2021;2.2;3.3;05/21/2021;4.4;5.5;05/22/2021;44;S20;1;3;4;6.6;7.7");
             Assert.AreEqual(expect, res);
         }
     }

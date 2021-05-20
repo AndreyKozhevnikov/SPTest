@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 namespace SpTest.Classes {
     public interface IFileWorker {
         string StreamReaderReadToEnd(string path);
-    }
+        void StreamWriterWriteLines(string path, List<string> lines);    }
 }

@@ -30,9 +30,33 @@ namespace SpTest.Classes {
         public string GetStringFromDate(DateTime dt) {
             return dt.ToString("MM/dd/yyyy");
         }
-        public string ConvertResultList(List<ResultItem> items) {
-            string result = string.Join(Environment.NewLine, items.Select(x => this.ConvertResult(x)));
-            return result;
+        public List<string> ConvertResultList(List<ResultItem> items) {
+            List<string> names = new List<string>();
+            List<String> resV = new List<string>();
+            resV.Add("Date");
+            resV.Add("Price");
+            resV.Add("MaxPrice");
+            resV.Add("MaxPriceDate");
+            resV.Add("Result");
+            resV.Add("MaxResult");
+            resV.Add("MaxResultDate");
+            resV.Add("DrawDown");
+            resV.Add("MaxDrawDown");
+            resV.Add("MaxDrawDownDate");
+            resV.Add("InputValue");
+            resV.Add("State");
+            resV.Add("IsStateChanged");
+            resV.Add("SharesCount");
+            resV.Add("AddedShares");
+            resV.Add("CashAmount");
+            resV.Add("DiffFromMaxPricePercent");
+            
+            string resItem = string.Join(";", resV);
+            names.Add(resItem);
+            List<string> itemsStrings = items.Select(x => this.ConvertResult(x)).ToList();
+            var allItems = names.Concat(itemsStrings).ToList();
+            
+            return allItems;
         }
     }
 }

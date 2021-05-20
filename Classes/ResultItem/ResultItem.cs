@@ -11,30 +11,6 @@ namespace SpTest.Classes {
             Price = _price;
         }
 
-        public static List<String> PropertyNames {
-            get {
-                List<String> res = new List<string>();
-                res.Add("Date");
-                res.Add("Price");
-                res.Add("MaxPrice");
-                res.Add("MaxPriceDate");
-                res.Add("MaxResult");
-                res.Add("MaxResultDate");
-                res.Add("DrawDown");
-                res.Add("MaxDrawDown");
-                res.Add("MaxDrawDownDate");
-                res.Add("InputValue");
-                res.Add("State");
-                res.Add("IsStateChanged");
-                res.Add("SharesCount");
-                res.Add("AddedShares");
-                res.Add("CashAmount");
-                res.Add("DiffFromMaxPricePercent");
-                res.Add("Result");
-                return res;
-            }
-        }
-
         public DateTime Date{ get; set; }
         public double Price{ get; set; }
         public double MaxPrice { get; set; }

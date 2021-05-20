@@ -14,5 +14,13 @@ namespace SpTest.Classes {
             }
             return result;
         }
+        public void StreamWriterWriteLines(string path, List<String> lines) {
+            using(StreamWriter st = new StreamWriter(path)) {
+                foreach(string line in lines) {
+                    st.WriteLine(line);
+                }
+            }
+            
+        }
     }
 }
