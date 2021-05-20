@@ -13,17 +13,10 @@ namespace SpTest.Classes {
                 var factory = new DataItemFactory();
                 while(!reader.EndOfStream) {
                     var line = reader.ReadLine();
-                    var values = line.Split(';');
-                    var dt = values[0];
-                    var vl = values[1];
-                    if(dt == "Date") {
-                        continue;
-                    }
-                    var item = factory.CreateDataItem(dt, vl);
+                    var item = factory.CreateDataItemFromString(line);
+                    lst.Add(item);
                 }
-
             }
-
             return lst;
         }
     }
