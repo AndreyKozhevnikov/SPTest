@@ -53,15 +53,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\DataItem.cs" />
-    <Compile Include="Classes\DataItemFactory.cs" />
+    <Compile Include="Classes\MyStringList.cs" />
+    <Compile Include="Classes\ResultItem\AnalyzeResult.cs" />
+    <Compile Include="Classes\DataItems\DataItem.cs" />
+    <Compile Include="Classes\DataItems\DataItemFactory.cs" />
     <Compile Include="Classes\DataLoader.cs" />
     <Compile Include="Classes\Exporter.cs" />
     <Compile Include="Classes\FileWorker.cs" />
-    <Compile Include="Classes\IDataItemFactory.cs" />
+    <Compile Include="Classes\DataItems\IDataItemFactory.cs" />
     <Compile Include="Classes\IFileWorker.cs" />
-    <Compile Include="Classes\ResultItem.cs" />
-    <Compile Include="Classes\ResultItemFactory.cs" />
+    <Compile Include="Classes\ResultItem\ResultItem.cs" />
+    <Compile Include="Classes\ResultItem\ResultItemFactory.cs" />
+    <Compile Include="Classes\ResultItem\ResultState.cs" />
     <Compile Include="Classes\ResultToStringConverter.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
