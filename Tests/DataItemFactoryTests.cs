@@ -45,7 +45,7 @@ namespace SpTest.Tests {
             //act
             var item = factory.CreateDataItem(dtSt, vlSt);
             //assert
-            Assert.AreEqual(3044.31,item.Value);
+            Assert.AreEqual(3044.31,item.Price);
         }
         [Test]
         public void CreateFromString_1() {
@@ -66,7 +66,7 @@ namespace SpTest.Tests {
             DataItem res = factory.CreateDataItemFromString(line);
             //assert
             Assert.AreEqual(new DateTime(2021,5,1), res.Date);
-            Assert.AreEqual(4173,85, res.Value);
+            Assert.AreEqual(4173,85, res.Price);
         }
         [Test]
         public void CreateDataItemFromStrings() {

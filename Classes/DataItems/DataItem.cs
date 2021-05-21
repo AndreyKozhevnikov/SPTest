@@ -10,10 +10,10 @@ namespace SpTest.Classes {
     public class DataItem {
         public DataItem(DateTime _date, double _value) {
             Date = _date;
-            Value = _value;
+            Price = _value;
         }
 
         public DateTime Date{ get; set; }
-        public double Value{ get; set; }
+        public double Price{ get; set; }
     }
 }

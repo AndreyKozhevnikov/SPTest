@@ -18,7 +18,11 @@ namespace SpTest.Classes {
             return result;
         }
         public ResultItem ProcessLine(DataItem inputLine,ResultItem currentItem, double inputSum) {
-            var result= new ResultItem(inputLine.Date, inputLine.Value);
+            var result= new ResultItem(inputLine.Date, inputLine.Price);
+            if(inputLine.Price > currentItem.MaxPrice) {
+                result.MaxPrice = inputLine.Price;
+                result.MaxPriceDate = inputLine.Date;
+            }
             return result;
         }
     }

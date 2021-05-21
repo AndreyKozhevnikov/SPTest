@@ -13,7 +13,7 @@ namespace SpTest.Classes {
             List<DataItem> lst = load.LoadData();
 
             var exporter = new ResultExporter(fileWorker);
-            var testResults = lst.Select(x => new ResultItem(x.Date, x.Value)).ToList() ;
+            var testResults = lst.Select(x => new ResultItem(x.Date, x.Price)).ToList() ;
             exporter.Export(testResults, "test.csv");
 
         }
