@@ -21,10 +21,10 @@ namespace SpTest.Classes {
         public double InputValue { get; set; }
         public ResultState State { get; set; }
         public bool IsStateChanged { get; set; }
+        public double ReserveAll { get; set; }
+        public double ReserveChange { get; set; }
         public int SharesCount { get; set; }
         public int AddedShares { get; set; }
-        public double ReserveAmount { get; set; }
-        public double SpentReserve { get; set; }
         public double Result { get; set; }
         public double MaxResult { get; set; }
         public DateTime MaxResultDate { get; set; }

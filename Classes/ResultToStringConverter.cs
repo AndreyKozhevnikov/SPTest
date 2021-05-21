@@ -18,10 +18,10 @@ namespace SpTest.Classes {
             list.Add(item.InputValue);
             list.Add(item.State);
             list.Add(item.IsStateChanged);
+            list.Add(item.ReserveAll);
+            list.Add(item.ReserveChange);
             list.Add(item.SharesCount);
             list.Add(item.AddedShares);
-            list.Add(item.ReserveAmount);
-            list.Add(item.SpentReserve);
             list.Add(item.Result);
             list.Add(item.MaxResult);
             list.Add(item.MaxResultDate);
@@ -46,10 +46,10 @@ namespace SpTest.Classes {
             resV.Add("InputValue");
             resV.Add("State");
             resV.Add("IsStateChanged");
+            resV.Add("ReserveAll");
+            resV.Add("ReserveChange");
             resV.Add("SharesCount");
             resV.Add("AddedShares");
-            resV.Add("ReserveAmount");
-            resV.Add("SpentReserve");
             resV.Add("Result");
             resV.Add("MaxResult");
             resV.Add("MaxResultDate");

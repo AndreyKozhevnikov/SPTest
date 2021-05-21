@@ -24,8 +24,8 @@ namespace SpTest.Tests {
             item.IsStateChanged = true;
             item.SharesCount = 3;
             item.AddedShares = 4;
-            item.ReserveAmount = 6.6;
-            item.SpentReserve = 8.8;
+            item.ReserveAll = 6.6;
+            item.ReserveChange = 8.8;
             item.Result = 2.2;
             item.MaxResult = 3.3;
             item.MaxResultDate = new DateTime(2021, 5, 21);
@@ -44,7 +44,7 @@ namespace SpTest.Tests {
             //act
             var res = conv.ConvertResult(item);
             //assert
-            Assert.AreEqual("05/19/2021;456.1;1.2;05/20/2021;4.4;5.5;05/22/2021;44;S20;1;3;4;6.6;8.8;2.2;3.3;05/21/2021;9.9;2.3;06/06/2021", res);
+            Assert.AreEqual("05/19/2021;456.1;1.2;05/20/2021;4.4;5.5;05/22/2021;44;S20;1;6.6;8.8;3;4;2.2;3.3;05/21/2021;9.9;2.3;06/06/2021", res);
         }
         [Test]
         public void ConvertItemList() {
@@ -70,10 +70,10 @@ namespace SpTest.Tests {
             resV.Add("InputValue");
             resV.Add("State");
             resV.Add("IsStateChanged");
+            resV.Add("ReserveAll");
+            resV.Add("ReserveChange");
             resV.Add("SharesCount");
             resV.Add("AddedShares");
-            resV.Add("ReserveAmount");
-            resV.Add("SpentReserve");
             resV.Add("Result");
             resV.Add("MaxResult");
             resV.Add("MaxResultDate");
@@ -83,8 +83,8 @@ namespace SpTest.Tests {
             string resItem = string.Join(";", resV);
             var expect = new List<string>();
             expect.Add(resItem);
-            expect.Add("05/19/2021;456.1;1.2;05/20/2021;4.4;5.5;05/22/2021;44;S20;1;3;4;6.6;8.8;2.2;3.3;05/21/2021;9.9;2.3;06/06/2021");
-            expect.Add("04/03/2022;456.1;1.2;05/20/2021;4.4;5.5;05/22/2021;44;S20;1;3;4;6.6;8.8;2.2;3.3;05/21/2021;9.9;2.3;06/06/2021");
+            expect.Add("05/19/2021;456.1;1.2;05/20/2021;4.4;5.5;05/22/2021;44;S20;1;6.6;8.8;3;4;2.2;3.3;05/21/2021;9.9;2.3;06/06/2021");
+            expect.Add("04/03/2022;456.1;1.2;05/20/2021;4.4;5.5;05/22/2021;44;S20;1;6.6;8.8;3;4;2.2;3.3;05/21/2021;9.9;2.3;06/06/2021");
             Assert.AreEqual(expect, res);
         }
     }
