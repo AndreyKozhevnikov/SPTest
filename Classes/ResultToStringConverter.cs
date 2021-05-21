@@ -23,7 +23,8 @@ namespace SpTest.Classes {
             list.Add(item.IsStateChanged);
             list.Add(item.SharesCount);
             list.Add(item.AddedShares);
-            list.Add(item.CashAmount);
+            list.Add(item.ReserveAmount);
+            list.Add(item.SpentReserve);
             list.Add(item.DiffFromMaxPricePercent);
             return string.Join(";", list);
         }
@@ -48,7 +49,8 @@ namespace SpTest.Classes {
             resV.Add("IsStateChanged");
             resV.Add("SharesCount");
             resV.Add("AddedShares");
-            resV.Add("CashAmount");
+            resV.Add("ReserveAmount");
+            resV.Add("SpentReserve");
             resV.Add("DiffFromMaxPricePercent");
             
             string resItem = string.Join(";", resV);

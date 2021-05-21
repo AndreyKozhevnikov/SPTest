@@ -1,11 +1,12 @@
 ﻿using NUnit.Framework;
+using SpTest.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpTest.Classes {
+namespace SpTest.Tests {
     [TestFixture]
     class ResultToStringConverterTests {
         ResultToStringConverter CreateConverter() {
@@ -26,8 +27,10 @@ namespace SpTest.Classes {
             item.IsStateChanged = true;
             item.SharesCount = 3;
             item.AddedShares = 4;
-            item.CashAmount = 6.6;
+            item.ReserveAmount = 6.6;
+            item.SpentReserve = 8.8;
             item.DiffFromMaxPricePercent = 7.7;
+           
             return item;
         }
         [Test]
@@ -39,7 +42,7 @@ namespace SpTest.Classes {
             //act
             var res = conv.ConvertResult(item);
             //assert
-            Assert.AreEqual("05/19/2021;456.1;1.2;05/20/2021;2.2;3.3;05/21/2021;4.4;5.5;05/22/2021;44;S20;1;3;4;6.6;7.7", res);
+            Assert.AreEqual("05/19/2021;456.1;1.2;05/20/2021;2.2;3.3;05/21/2021;4.4;5.5;05/22/2021;44;S20;1;3;4;6.6;8.8;7.7", res);
         }
         [Test]
         public void ConvertItemList() {
@@ -70,14 +73,15 @@ namespace SpTest.Classes {
             resV.Add("IsStateChanged");
             resV.Add("SharesCount");
             resV.Add("AddedShares");
-            resV.Add("CashAmount");
+            resV.Add("ReserveAmount");
+            resV.Add("SpentReserve");
             resV.Add("DiffFromMaxPricePercent");
             
             string resItem = string.Join(";", resV);
             var expect = new List<string>();
             expect.Add(resItem);
-            expect.Add("05/19/2021;456.1;1.2;05/20/2021;2.2;3.3;05/21/2021;4.4;5.5;05/22/2021;44;S20;1;3;4;6.6;7.7");
-            expect.Add("04/03/2022;456.1;1.2;05/20/2021;2.2;3.3;05/21/2021;4.4;5.5;05/22/2021;44;S20;1;3;4;6.6;7.7");
+            expect.Add("05/19/2021;456.1;1.2;05/20/2021;2.2;3.3;05/21/2021;4.4;5.5;05/22/2021;44;S20;1;3;4;6.6;8.8;7.7");
+            expect.Add("04/03/2022;456.1;1.2;05/20/2021;2.2;3.3;05/21/2021;4.4;5.5;05/22/2021;44;S20;1;3;4;6.6;8.8;7.7");
             Assert.AreEqual(expect, res);
         }
     }
