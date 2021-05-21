@@ -16,12 +16,9 @@ namespace SpTest.Tests {
             var item = new ResultItem(new DateTime(2021, 5, 19), 456.1);
             item.MaxPrice = 1.2;
             item.MaxPriceDate = new DateTime(2021, 5, 20);
-            item.Result = 2.2;
-            item.MaxResult = 3.3;
-            item.MaxResultDate = new DateTime(2021, 5, 21);
-            item.Drawdown = 4.4;
-            item.MaxDrawdown = 5.5;
-            item.MaxDrawdownDate = new DateTime(2021, 5, 22);
+            item.PriceDrawdown = 4.4;
+            item.MaxPriceDrawdown = 5.5;
+            item.MaxPriceDrawdownDate = new DateTime(2021, 5, 22);
             item.InputValue = 44;
             item.State = ResultState.S20;
             item.IsStateChanged = true;
@@ -29,8 +26,13 @@ namespace SpTest.Tests {
             item.AddedShares = 4;
             item.ReserveAmount = 6.6;
             item.SpentReserve = 8.8;
-            item.DiffFromMaxPricePercent = 7.7;
-           
+            item.Result = 2.2;
+            item.MaxResult = 3.3;
+            item.MaxResultDate = new DateTime(2021, 5, 21);
+            item.ResultDrawdown = 9.9;
+            item.MaxResultDrawdown = 2.3;
+            item.MaxResultDrawdownDate = new DateTime(2021, 6, 6);
+
             return item;
         }
         [Test]
@@ -42,7 +44,7 @@ namespace SpTest.Tests {
             //act
             var res = conv.ConvertResult(item);
             //assert
-            Assert.AreEqual("05/19/2021;456.1;1.2;05/20/2021;2.2;3.3;05/21/2021;4.4;5.5;05/22/2021;44;S20;1;3;4;6.6;8.8;7.7", res);
+            Assert.AreEqual("05/19/2021;456.1;1.2;05/20/2021;4.4;5.5;05/22/2021;44;S20;1;3;4;6.6;8.8;2.2;3.3;05/21/2021;9.9;2.3;06/06/2021", res);
         }
         [Test]
         public void ConvertItemList() {
@@ -62,12 +64,9 @@ namespace SpTest.Tests {
             resV.Add("Price");
             resV.Add("MaxPrice");
             resV.Add("MaxPriceDate");
-            resV.Add("Result");
-            resV.Add("MaxResult");
-            resV.Add("MaxResultDate");
-            resV.Add("Drawdown");
-            resV.Add("MaxDrawdown");
-            resV.Add("MaxDrawdownDate");
+            resV.Add("PriceDrawdown");
+            resV.Add("MaxPriceDrawdown");
+            resV.Add("MaxPriceDrawdownDate");
             resV.Add("InputValue");
             resV.Add("State");
             resV.Add("IsStateChanged");
@@ -75,13 +74,17 @@ namespace SpTest.Tests {
             resV.Add("AddedShares");
             resV.Add("ReserveAmount");
             resV.Add("SpentReserve");
-            resV.Add("DiffFromMaxPricePercent");
-            
+            resV.Add("Result");
+            resV.Add("MaxResult");
+            resV.Add("MaxResultDate");
+            resV.Add("ResultDrawdown");
+            resV.Add("MaxResultDrawdown");
+            resV.Add("MaxResultDrawdownDate");
             string resItem = string.Join(";", resV);
             var expect = new List<string>();
             expect.Add(resItem);
-            expect.Add("05/19/2021;456.1;1.2;05/20/2021;2.2;3.3;05/21/2021;4.4;5.5;05/22/2021;44;S20;1;3;4;6.6;8.8;7.7");
-            expect.Add("04/03/2022;456.1;1.2;05/20/2021;2.2;3.3;05/21/2021;4.4;5.5;05/22/2021;44;S20;1;3;4;6.6;8.8;7.7");
+            expect.Add("05/19/2021;456.1;1.2;05/20/2021;4.4;5.5;05/22/2021;44;S20;1;3;4;6.6;8.8;2.2;3.3;05/21/2021;9.9;2.3;06/06/2021");
+            expect.Add("04/03/2022;456.1;1.2;05/20/2021;4.4;5.5;05/22/2021;44;S20;1;3;4;6.6;8.8;2.2;3.3;05/21/2021;9.9;2.3;06/06/2021");
             Assert.AreEqual(expect, res);
         }
     }

@@ -85,7 +85,7 @@ namespace SpTest.Tests {
             //act
             var res = analyzer.ProcessLine(inputLine, currentItem, 100);
             //assert
-            Assert.AreEqual(12.747, res.Drawdown);
+            Assert.AreEqual(12.747, res.PriceDrawdown);
         }
         [Test]
         public void ProcessLine_Drawdown_1() {
@@ -99,7 +99,7 @@ namespace SpTest.Tests {
             //act
             var res = analyzer.ProcessLine(inputLine, currentItem, 100);
             //assert
-            Assert.AreEqual(0, res.Drawdown);
+            Assert.AreEqual(0, res.PriceDrawdown);
         }
         [Test]
         public void ProcessLine_MaxDrawdown() {
@@ -108,13 +108,13 @@ namespace SpTest.Tests {
             var currentItem = CreateResultItem();
             var inputLine = CreateDataItem();
             currentItem.MaxPrice = 100;
-            currentItem.MaxDrawdown = 4.12;
+            currentItem.MaxPriceDrawdown = 4.12;
             inputLine.Price = 87.253;
 
             //act
             var res = analyzer.ProcessLine(inputLine, currentItem, 100);
             //assert
-            Assert.AreEqual(12.747, res.MaxDrawdown);
+            Assert.AreEqual(12.747, res.MaxPriceDrawdown);
         }
         [Test]
         public void ProcessLine_MaxDrawdownDate() {
@@ -123,13 +123,13 @@ namespace SpTest.Tests {
             var currentItem = CreateResultItem();
             var inputLine = CreateDataItem();
             currentItem.MaxPrice = 100;
-            currentItem.MaxDrawdown = 4.12;
+            currentItem.MaxPriceDrawdown = 4.12;
             inputLine.Price = 87.253;
 
             //act
             var res = analyzer.ProcessLine(inputLine, currentItem, 100);
             //assert
-            Assert.AreEqual(new DateTime(2021,5,20), res.MaxDrawdownDate);
+            Assert.AreEqual(new DateTime(2021,5,20), res.MaxPriceDrawdownDate);
         }
         [Test]
         public void ProcessLine_InputValue() {

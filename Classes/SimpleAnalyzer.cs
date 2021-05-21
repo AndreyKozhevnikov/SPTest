@@ -25,16 +25,16 @@ namespace SpTest.Classes {
             }
             if(inputLine.Price < currentItem.MaxPrice) {
                 double diff = currentItem.MaxPrice - inputLine.Price;
-                result.Drawdown = (diff / currentItem.MaxPrice) * 100;
-                if(result.Drawdown > currentItem.MaxDrawdown) {
-                    result.MaxDrawdown = result.Drawdown;
-                    result.MaxDrawdownDate = inputLine.Date;
+                result.PriceDrawdown = (diff / currentItem.MaxPrice) * 100;
+                if(result.PriceDrawdown > currentItem.MaxPriceDrawdown) {
+                    result.MaxPriceDrawdown = result.PriceDrawdown;
+                    result.MaxPriceDrawdownDate = inputLine.Date;
                 }
-                if(result.Drawdown >= 10 && result.Drawdown < 20) {
+                if(result.PriceDrawdown >= 10 && result.PriceDrawdown < 20) {
                     result.State = ResultState.S10;
-                } else if(result.Drawdown >= 20 && result.Drawdown < 30) {
+                } else if(result.PriceDrawdown >= 20 && result.PriceDrawdown < 30) {
                     result.State = ResultState.S20;
-                } else if(result.Drawdown >= 30) {
+                } else if(result.PriceDrawdown >= 30) {
                     result.State = ResultState.S30;
                 }
             }

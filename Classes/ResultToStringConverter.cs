@@ -12,12 +12,9 @@ namespace SpTest.Classes {
             list.Add(item.Price);
             list.Add(item.MaxPrice);
             list.Add(item.MaxPriceDate);
-            list.Add(item.Result);
-            list.Add(item.MaxResult);
-            list.Add(item.MaxResultDate);
-            list.Add(item.Drawdown);
-            list.Add(item.MaxDrawdown);
-            list.Add(item.MaxDrawdownDate);
+            list.Add(item.PriceDrawdown);
+            list.Add(item.MaxPriceDrawdown);
+            list.Add(item.MaxPriceDrawdownDate);
             list.Add(item.InputValue);
             list.Add(item.State);
             list.Add(item.IsStateChanged);
@@ -25,7 +22,12 @@ namespace SpTest.Classes {
             list.Add(item.AddedShares);
             list.Add(item.ReserveAmount);
             list.Add(item.SpentReserve);
-            list.Add(item.DiffFromMaxPricePercent);
+            list.Add(item.Result);
+            list.Add(item.MaxResult);
+            list.Add(item.MaxResultDate);
+            list.Add(item.ResultDrawdown);
+            list.Add(item.MaxResultDrawdown);
+            list.Add(item.MaxResultDrawdownDate);
             return string.Join(";", list);
         }
         public string GetStringFromDate(DateTime dt) {
@@ -38,12 +40,9 @@ namespace SpTest.Classes {
             resV.Add("Price");
             resV.Add("MaxPrice");
             resV.Add("MaxPriceDate");
-            resV.Add("Result");
-            resV.Add("MaxResult");
-            resV.Add("MaxResultDate");
-            resV.Add("Drawdown");
-            resV.Add("MaxDrawdown");
-            resV.Add("MaxDrawdownDate");
+            resV.Add("PriceDrawdown");
+            resV.Add("MaxPriceDrawdown");
+            resV.Add("MaxPriceDrawdownDate");
             resV.Add("InputValue");
             resV.Add("State");
             resV.Add("IsStateChanged");
@@ -51,8 +50,12 @@ namespace SpTest.Classes {
             resV.Add("AddedShares");
             resV.Add("ReserveAmount");
             resV.Add("SpentReserve");
-            resV.Add("DiffFromMaxPricePercent");
-            
+            resV.Add("Result");
+            resV.Add("MaxResult");
+            resV.Add("MaxResultDate");
+            resV.Add("ResultDrawdown");
+            resV.Add("MaxResultDrawdown");
+            resV.Add("MaxResultDrawdownDate");
             string resItem = string.Join(";", resV);
             names.Add(resItem);
             List<string> itemsStrings = items.Select(x => this.ConvertResult(x)).ToList();
