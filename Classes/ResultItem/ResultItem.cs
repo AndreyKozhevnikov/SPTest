@@ -17,9 +17,9 @@ namespace SpTest.Classes {
         public DateTime MaxPriceDate{ get; set; }
         public double MaxResult{ get; set; }
         public DateTime MaxResultDate{ get; set; }
-        public double DrawDown{ get; set; }
-        public double MaxDrawDown{ get; set; }
-        public DateTime MaxDrawDownDate{ get; set; }
+        public double Drawdown{ get; set; }
+        public double MaxDrawdown{ get; set; }
+        public DateTime MaxDrawdownDate{ get; set; }
         public double InputValue{ get; set; }
         public ResultState State{ get; set; }
         public bool IsStateChanged{ get; set; }

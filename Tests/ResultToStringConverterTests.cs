@@ -18,9 +18,9 @@ namespace SpTest.Classes {
             item.Result = 2.2;
             item.MaxResult = 3.3;
             item.MaxResultDate = new DateTime(2021, 5, 21);
-            item.DrawDown = 4.4;
-            item.MaxDrawDown = 5.5;
-            item.MaxDrawDownDate = new DateTime(2021, 5, 22);
+            item.Drawdown = 4.4;
+            item.MaxDrawdown = 5.5;
+            item.MaxDrawdownDate = new DateTime(2021, 5, 22);
             item.InputValue = 44;
             item.State = ResultState.S20;
             item.IsStateChanged = true;
@@ -62,9 +62,9 @@ namespace SpTest.Classes {
             resV.Add("Result");
             resV.Add("MaxResult");
             resV.Add("MaxResultDate");
-            resV.Add("DrawDown");
-            resV.Add("MaxDrawDown");
-            resV.Add("MaxDrawDownDate");
+            resV.Add("Drawdown");
+            resV.Add("MaxDrawdown");
+            resV.Add("MaxDrawdownDate");
             resV.Add("InputValue");
             resV.Add("State");
             resV.Add("IsStateChanged");

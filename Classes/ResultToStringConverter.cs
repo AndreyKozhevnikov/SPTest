@@ -15,9 +15,9 @@ namespace SpTest.Classes {
             list.Add(item.Result);
             list.Add(item.MaxResult);
             list.Add(item.MaxResultDate);
-            list.Add(item.DrawDown);
-            list.Add(item.MaxDrawDown);
-            list.Add(item.MaxDrawDownDate);
+            list.Add(item.Drawdown);
+            list.Add(item.MaxDrawdown);
+            list.Add(item.MaxDrawdownDate);
             list.Add(item.InputValue);
             list.Add(item.State);
             list.Add(item.IsStateChanged);
@@ -40,9 +40,9 @@ namespace SpTest.Classes {
             resV.Add("Result");
             resV.Add("MaxResult");
             resV.Add("MaxResultDate");
-            resV.Add("DrawDown");
-            resV.Add("MaxDrawDown");
-            resV.Add("MaxDrawDownDate");
+            resV.Add("Drawdown");
+            resV.Add("MaxDrawdown");
+            resV.Add("MaxDrawdownDate");
             resV.Add("InputValue");
             resV.Add("State");
             resV.Add("IsStateChanged");
