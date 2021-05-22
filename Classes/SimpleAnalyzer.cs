@@ -75,6 +75,9 @@ namespace SpTest.Classes {
                             percentToSpent = 0.7;
                         }
                         break;
+                    case ResultState.S30:
+                        percentToSpent = 1;
+                        break;
                 }
                 spentFromReserve = currResult.ReserveAll * percentToSpent;
                 currResult.ReserveChange -= spentFromReserve;
