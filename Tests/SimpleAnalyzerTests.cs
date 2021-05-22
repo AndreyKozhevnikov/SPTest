@@ -221,7 +221,7 @@ namespace SpTest.Tests {
             //act
             var res = analyzer.ProcessLine(inputLine, currentItem, 77);
             //assert
-            Assert.AreEqual(false, res.IsStateChanged);
+            Assert.AreEqual(false, res.IsStateDown);
         }
         [Test]
         public void ProcessLine_IsStateChanged_1() {
@@ -235,10 +235,10 @@ namespace SpTest.Tests {
             //act
             var res = analyzer.ProcessLine(inputLine, currentItem, 77);
             //assert
-            Assert.AreEqual(true, res.IsStateChanged);
+            Assert.AreEqual(true, res.IsStateDown);
         }
         [Test]
-        public void ProcessLine_IsStateChanged_2() {
+        public void ProcessLine_IsStateChanged_2fromS10toS0() {
             //arrange
             var analyzer = CreateAnalyzer();
             var currentItem = CreateResultItem();
@@ -249,7 +249,7 @@ namespace SpTest.Tests {
             //act
             var res = analyzer.ProcessLine(inputLine, currentItem, 77);
             //assert
-            Assert.AreEqual(true, res.IsStateChanged);
+            Assert.AreEqual(false, res.IsStateDown);
         }
     }
 }

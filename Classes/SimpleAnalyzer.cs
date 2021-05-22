@@ -39,8 +39,8 @@ namespace SpTest.Classes {
                     currResult.State = ResultState.S30;
                 }
             }
-            if(currResult.State != prevResult.State) {
-                currResult.IsStateChanged = true;
+            if(currResult.State > prevResult.State) {
+                currResult.IsStateDown = true;
             }
             currResult.InputValue = inputSum;
             double spentFromInput = 0;
@@ -61,7 +61,7 @@ namespace SpTest.Classes {
             }
             double inputRemain = currResult.InputValue - spentFromInput;
             double sumToSpend = spentFromInput;
-            if(currResult.IsStateChanged) {
+            if(currResult.IsStateDown) {
                 double spentFromReserve = 0;
                 switch(currResult.State) {
                     case ResultState.S10:
