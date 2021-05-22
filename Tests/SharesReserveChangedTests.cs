@@ -122,6 +122,34 @@ namespace SpTest.Tests {
             //assert
             Assert.AreEqual(-1, Math.Floor(res.ReserveChange));
         }
+        [Test]
+        public void ProcessLine_SharesAdded_S10_changeFromS20() {
+            //arrange
+            var analyzer = CreateAnalyzer();
+            var prevResult = CreateResultItem(100);
+            var inputLine = CreateDataItem(100);
+            prevResult.MaxPrice = 115;
+            prevResult.State = ResultState.S20;
+            prevResult.ReserveAll = 3334;
+            //act
+            var res = analyzer.ProcessLine(inputLine, prevResult, 5000);
+            //assert
+            Assert.AreEqual(40, res.AddedShares);
+        }
+        [Test]
+        public void ProcessLine_ReserveChange_S10_changeFromS20() {
+            //arrange
+            var analyzer = CreateAnalyzer();
+            var prevResult = CreateResultItem(100);
+            var inputLine = CreateDataItem(100);
+            prevResult.MaxPrice = 115;
+            prevResult.State = ResultState.S20;
+            prevResult.ReserveAll = 3334;
+            //act
+            var res = analyzer.ProcessLine(inputLine, prevResult, 5000);
+            //assert
+            Assert.AreEqual(1000, res.ReserveChange);
+        }
         #endregion
         #region S20
         [Test]
