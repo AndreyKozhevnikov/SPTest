@@ -17,7 +17,7 @@ namespace SpTest.Classes {
             list.Add(item.MaxPriceDrawdownDate);
             list.Add(item.InputValue);
             list.Add(item.State);
-            list.Add(item.IsStateChanged);
+            list.Add(item.IsStateDown);
             list.Add(item.ReserveAll);
             list.Add(item.ReserveChange);
             list.Add(item.SharesCount);
@@ -45,7 +45,7 @@ namespace SpTest.Classes {
             resV.Add("MaxPriceDrawdownDate");
             resV.Add("InputValue");
             resV.Add("State");
-            resV.Add("IsStateChanged");
+            resV.Add("IsStateDown");
             resV.Add("ReserveAll");
             resV.Add("ReserveChange");
             resV.Add("SharesCount");

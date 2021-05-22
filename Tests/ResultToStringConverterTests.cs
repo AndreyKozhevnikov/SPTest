@@ -21,7 +21,7 @@ namespace SpTest.Tests {
             item.MaxPriceDrawdownDate = new DateTime(2021, 5, 22);
             item.InputValue = 44;
             item.State = ResultState.S20;
-            item.IsStateChanged = true;
+            item.IsStateDown = true;
             item.SharesCount = 3;
             item.AddedShares = 4;
             item.ReserveAll = 6.6;
@@ -69,7 +69,7 @@ namespace SpTest.Tests {
             resV.Add("MaxPriceDrawdownDate");
             resV.Add("InputValue");
             resV.Add("State");
-            resV.Add("IsStateChanged");
+            resV.Add("IsStateDown");
             resV.Add("ReserveAll");
             resV.Add("ReserveChange");
             resV.Add("SharesCount");

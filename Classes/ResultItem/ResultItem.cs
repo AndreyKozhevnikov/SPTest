@@ -20,7 +20,7 @@ namespace SpTest.Classes {
         public DateTime MaxPriceDrawdownDate { get; set; }
         public double InputValue { get; set; }
         public ResultState State { get; set; }
-        public bool IsStateChanged { get; set; }
+        public bool IsStateDown { get; set; }
         public double ReserveAll { get; set; }
         public double ReserveChange { get; set; }
         public int SharesCount { get; set; }
