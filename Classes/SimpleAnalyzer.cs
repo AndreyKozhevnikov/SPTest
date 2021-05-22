@@ -48,6 +48,15 @@ namespace SpTest.Classes {
                 case ResultState.S0:
                     amountToSpend = result.InputValue * 0.7;
                     break;
+                case ResultState.S10:
+                    amountToSpend = result.InputValue * 0.8;
+                    break;
+                case ResultState.S20:
+                    amountToSpend = result.InputValue * 0.9;
+                    break;
+                case ResultState.S30:
+                    amountToSpend = result.InputValue;
+                    break;
             }
             int sharesToBuyCount = (int)Math.Floor(amountToSpend / result.Price);
             result.AddedShares = sharesToBuyCount;
