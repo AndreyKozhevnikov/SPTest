@@ -19,6 +19,7 @@ namespace SpTest.Classes {
         }
         public ResultItem ProcessLine(DataItem inputLine, ResultItem prevResult, double inputSum) {
             var currResult = new ResultItem(inputLine.Date, inputLine.Price);
+            currResult.ReserveAll = prevResult.ReserveAll;
             if(inputLine.Price > prevResult.MaxPrice) {
                 currResult.MaxPrice = inputLine.Price;
                 currResult.MaxPriceDate = inputLine.Date;
@@ -65,9 +66,9 @@ namespace SpTest.Classes {
                 switch(currResult.State) {
                     case ResultState.S10:
                         //   if(currentItem.State == ResultState.S0) {
-                        spentFromReserve = prevResult.ReserveAll * 0.3;
+                        spentFromReserve = currResult.ReserveAll * 0.3;
                         currResult.ReserveChange -= spentFromReserve;
-                        prevResult.ReserveAll -= spentFromReserve;
+                        currResult.ReserveAll -= spentFromReserve;
                         // }
                         break;
                 }
@@ -84,7 +85,7 @@ namespace SpTest.Classes {
             double remainCash = sumToSpend - spentCash;
 
             currResult.ReserveChange += remainCash;
-            currResult.ReserveAll = prevResult.ReserveAll + currResult.ReserveChange;
+            currResult.ReserveAll += remainCash;
 
 
             return currResult;
