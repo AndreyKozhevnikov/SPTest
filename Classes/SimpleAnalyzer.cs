@@ -42,6 +42,24 @@ namespace SpTest.Classes {
                 result.IsStateChanged = true;
             }
             result.InputValue = inputSum;
+            double amountToSpend = 0;
+
+            switch(result.State) {
+                case ResultState.S0:
+                    amountToSpend = result.InputValue * 0.7;
+                    break;
+            }
+            int sharesToBuyCount = (int)Math.Floor(amountToSpend / result.Price);
+            result.AddedShares = sharesToBuyCount;
+            result.SharesCount = currentItem.SharesCount + sharesToBuyCount;
+
+            double spentCash = sharesToBuyCount * result.Price;
+            double remainCash = result.InputValue - spentCash;
+
+            result.ReserveChange = remainCash;
+            result.ReserveAll = currentItem.ReserveAll + remainCash;
+
+
             return result;
         }
     }

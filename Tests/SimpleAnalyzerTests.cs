@@ -10,13 +10,15 @@ namespace SpTest.Tests {
     [TestFixture]
     public class SimpleAnalyzerTests {
         ResultItem CreateResultItem() {
-            var r = new ResultItem(new DateTime(2021, 5, 20),10);
+            var r = new ResultItem(new DateTime(2021, 5, 20), 10);
             return r;
         }
+       
         DataItem CreateDataItem() {
             var d = new DataItem(new DateTime(2021, 5, 20), 10);
             return d;
         }
+       
         SimpleAnalyzer CreateAnalyzer() {
             var s = new SimpleAnalyzer();
             return s;
@@ -81,7 +83,7 @@ namespace SpTest.Tests {
             var inputLine = CreateDataItem();
             currentItem.MaxPrice = 100;
             inputLine.Price = 87.253;
-            
+
             //act
             var res = analyzer.ProcessLine(inputLine, currentItem, 100);
             //assert
@@ -129,7 +131,7 @@ namespace SpTest.Tests {
             //act
             var res = analyzer.ProcessLine(inputLine, currentItem, 100);
             //assert
-            Assert.AreEqual(new DateTime(2021,5,20), res.MaxPriceDrawdownDate);
+            Assert.AreEqual(new DateTime(2021, 5, 20), res.MaxPriceDrawdownDate);
         }
         [Test]
         public void ProcessLine_InputValue() {
