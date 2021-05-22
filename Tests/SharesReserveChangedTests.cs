@@ -178,6 +178,64 @@ namespace SpTest.Tests {
             //assert
             Assert.AreEqual(500, res.ReserveChange);
         }
+
+        [Test]
+        public void ProcessLine_SharesAdded_S20_changeFromS0() {
+            //arrange
+            var analyzer = CreateAnalyzer();
+            var prevResult = CreateResultItem(100);
+            var inputLine = CreateDataItem(100);
+            prevResult.MaxPrice = 130;
+            prevResult.State = ResultState.S0;
+            prevResult.ReserveAll = 2858;
+            //act
+            var res = analyzer.ProcessLine(inputLine, prevResult, 5000);
+            //assert
+            Assert.AreEqual(65, res.AddedShares);
+        }
+        [Test]
+        public void ProcessLine_ReserveChange_S20_changeFromS0() {
+            //arrange
+            var analyzer = CreateAnalyzer();
+            var prevResult = CreateResultItem(100);
+            var inputLine = CreateDataItem(100);
+            prevResult.MaxPrice = 130;
+            prevResult.State = ResultState.S0;
+            prevResult.ReserveAll = 2858;
+            //act
+            var res = analyzer.ProcessLine(inputLine, prevResult, 5000);
+            //assert
+            Assert.AreEqual(-1500, Math.Floor(res.ReserveChange));
+        }
+        [Test]
+        public void ProcessLine_SharesAdded_S20_changeFromS10() {
+            //arrange
+            var analyzer = CreateAnalyzer();
+            var prevResult = CreateResultItem(100);
+            var inputLine = CreateDataItem(100);
+            prevResult.MaxPrice = 130;
+            prevResult.State = ResultState.S10;
+            prevResult.ReserveAll = 6000;
+            //act
+            var res = analyzer.ProcessLine(inputLine, prevResult, 5000);
+            //assert
+            Assert.AreEqual(75, res.AddedShares);
+        }
+        [Test]
+        public void ProcessLine_ReserveChange_S20_changeFromS10() {
+            //arrange
+            var analyzer = CreateAnalyzer();
+            var prevResult = CreateResultItem(100);
+            var inputLine = CreateDataItem(100);
+            prevResult.MaxPrice = 130;
+            prevResult.State = ResultState.S10;
+            prevResult.ReserveAll = 6000;
+            //act
+            var res = analyzer.ProcessLine(inputLine, prevResult, 5000);
+            //assert
+            Assert.AreEqual(-2500, Math.Floor(res.ReserveChange));
+        }
+
         #endregion
         #region S30
         [Test]

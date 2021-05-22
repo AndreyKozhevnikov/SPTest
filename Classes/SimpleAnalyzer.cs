@@ -63,15 +63,22 @@ namespace SpTest.Classes {
             double sumToSpend = spentFromInput;
             if(currResult.IsStateDown) {
                 double spentFromReserve = 0;
+                double percentToSpent = 0;
                 switch(currResult.State) {
                     case ResultState.S10:
-                        //   if(currentItem.State == ResultState.S0) {
-                        spentFromReserve = currResult.ReserveAll * 0.3;
-                        currResult.ReserveChange -= spentFromReserve;
-                        currResult.ReserveAll -= spentFromReserve;
-                        // }
+                        percentToSpent= 0.3;
+                        break;
+                    case ResultState.S20:
+                        if(prevResult.State == ResultState.S10) {
+                            percentToSpent = 0.5;
+                        } else {
+                            percentToSpent = 0.7;
+                        }
                         break;
                 }
+                spentFromReserve = currResult.ReserveAll * percentToSpent;
+                currResult.ReserveChange -= spentFromReserve;
+                currResult.ReserveAll -= spentFromReserve;
                 sumToSpend = spentFromInput + spentFromReserve;
             }
             currResult.ReserveChange += inputRemain;
