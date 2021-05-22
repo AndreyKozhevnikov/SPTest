@@ -11,10 +11,11 @@ namespace SpTest.Classes {
             var dataItemFactory = new DataItemFactory();
             var load = new DataLoader(fileWorker,dataItemFactory, @"..\..\Data\sp.csv");
             List<DataItem> lst = load.LoadData();
-
+            var analyzer = new SimpleAnalyzer();
+            var lst2 = analyzer.Analyze(lst, 50000, 50000);
             var exporter = new ResultExporter(fileWorker);
             var testResults = lst.Select(x => new ResultItem(x.Date, x.Price)).ToList() ;
-            exporter.Export(testResults, "test.csv");
+            exporter.Export(lst2.Results, "first.csv");
 
         }
 
