@@ -8,21 +8,7 @@ using System.Threading.Tasks;
 
 namespace SpTest.Tests {
     [TestFixture]
-    public class SimpleAnalyzerTests {
-        ResultItem CreateResultItem() {
-            var r = new ResultItem(new DateTime(2021, 5, 20), 10);
-            return r;
-        }
-       
-        DataItem CreateDataItem() {
-            var d = new DataItem(new DateTime(2021, 5, 20), 10);
-            return d;
-        }
-       
-        SimpleAnalyzer CreateAnalyzer() {
-            var s = new SimpleAnalyzer();
-            return s;
-        }
+    public class SimpleAnalyzerTests : SimpleAnalyzerTestsBase {
         [Test]
         public void ProcessLine_Date() {
             //arrange
@@ -248,6 +234,17 @@ namespace SpTest.Tests {
             inputLine.Price = 154;
             //act
             var res = analyzer.ProcessLine(inputLine, currentItem, 77);
+            //assert
+            Assert.AreEqual(false, res.IsStateDown);
+        }
+        [Test]
+        public void ProcessLine_Result() {
+            //arrange
+            var analyzer = CreateAnalyzer();
+            var currentItem = CreateResultItem();
+            var inputLine = CreateDataItem(100);
+            //act
+            var res = analyzer.ProcessLine(inputLine, currentItem, 1000);
             //assert
             Assert.AreEqual(false, res.IsStateDown);
         }

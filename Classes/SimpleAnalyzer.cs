@@ -10,11 +10,14 @@ namespace SpTest.Classes {
         public AnalyzeResult Analyze(List<DataItem> inputItems, double startSum, double monthInput) {
             AnalyzeResult result = new AnalyzeResult(startSum);
             ResultItem currentItem = new ResultItem(DateTime.Now, 0);
+            double res = 0;
             foreach(var inputLine in inputItems) {
                 var newResultItem = ProcessLine(inputLine, currentItem, monthInput);
                 result.Results.Add(newResultItem);
                 currentItem = newResultItem;
+                res = currentItem.Result;
             }
+            result.FinishSum = res;
             return result;
         }
         public ResultItem ProcessLine(DataItem inputLine, ResultItem prevResult, double inputSum) {
@@ -66,7 +69,7 @@ namespace SpTest.Classes {
                 double percentToSpent = 0;
                 switch(currResult.State) {
                     case ResultState.S10:
-                        percentToSpent= 0.3;
+                        percentToSpent = 0.3;
                         break;
                     case ResultState.S20:
                         if(prevResult.State == ResultState.S10) {

@@ -4,19 +4,7 @@ using System;
 
 namespace SpTest.Tests {
     [TestFixture]
-    public class SharesReserveChangedTests {
-        SimpleAnalyzer CreateAnalyzer() {
-            var s = new SimpleAnalyzer();
-            return s;
-        }
-        ResultItem CreateResultItem(double price) {
-            var r = new ResultItem(new DateTime(2021, 5, 20), price);
-            return r;
-        }
-        DataItem CreateDataItem(double price) {
-            var d = new DataItem(new DateTime(2021, 5, 20), price);
-            return d;
-        }
+    public class SharesReserveChangedTests : SimpleAnalyzerTestsBase {
         #region S0
         [Test]
         public void ProcessLine_SharesAdded_S0() {

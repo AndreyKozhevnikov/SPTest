@@ -78,6 +78,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\DataItemFactoryTests.cs" />
     <Compile Include="Tests\SharesReserveChangedTests.cs" />
+    <Compile Include="Tests\SimpleAnalyzerTestsBase.cs" />
     <Compile Include="Tests\SimpleAnalyzerTests.cs" />
   </ItemGroup>
   <ItemGroup>
