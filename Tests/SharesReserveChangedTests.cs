@@ -4,7 +4,7 @@ using System;
 
 namespace SpTest.Tests {
     [TestFixture]
-    public class SharesReserveChangedTests{
+    public class SharesReserveChangedTests {
         SimpleAnalyzer CreateAnalyzer() {
             var s = new SimpleAnalyzer();
             return s;
@@ -93,6 +93,34 @@ namespace SpTest.Tests {
             var res = analyzer.ProcessLine(inputLine, currentItem, 5000);
             //assert
             Assert.AreEqual(1000, res.ReserveChange);
+        }
+        [Test]
+        public void ProcessLine_SharesAdded_S10_changeFromS0() {
+            //arrange
+            var analyzer = CreateAnalyzer();
+            var currentItem = CreateResultItem(100);
+            var inputLine = CreateDataItem(100);
+            currentItem.MaxPrice = 115;
+            currentItem.State = ResultState.S0;
+            currentItem.ReserveAll = 3334;
+            //act
+            var res = analyzer.ProcessLine(inputLine, currentItem, 5000);
+            //assert
+            Assert.AreEqual(50, res.AddedShares);
+        }
+        [Test]
+        public void ProcessLine_ReserveChange_S10_changeFromS0() {
+            //arrange
+            var analyzer = CreateAnalyzer();
+            var currentItem = CreateResultItem(100);
+            var inputLine = CreateDataItem(100);
+            currentItem.MaxPrice = 115;
+            currentItem.State = ResultState.S0;
+            currentItem.ReserveAll = 3334;
+            //act
+            var res = analyzer.ProcessLine(inputLine, currentItem, 5000);
+            //assert
+            Assert.AreEqual(-1, Math.Floor(res.ReserveChange));
         }
         #endregion
         #region S20

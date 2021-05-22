@@ -42,31 +42,49 @@ namespace SpTest.Classes {
                 result.IsStateChanged = true;
             }
             result.InputValue = inputSum;
-            double amountToSpend = 0;
+            double spentFromInput = 0;
 
             switch(result.State) {
                 case ResultState.S0:
-                    amountToSpend = result.InputValue * 0.7;
+                    spentFromInput = result.InputValue * 0.7;
                     break;
                 case ResultState.S10:
-                    amountToSpend = result.InputValue * 0.8;
+                    spentFromInput = result.InputValue * 0.8;
                     break;
                 case ResultState.S20:
-                    amountToSpend = result.InputValue * 0.9;
+                    spentFromInput = result.InputValue * 0.9;
                     break;
                 case ResultState.S30:
-                    amountToSpend = result.InputValue;
+                    spentFromInput = result.InputValue;
                     break;
             }
-            int sharesToBuyCount = (int)Math.Floor(amountToSpend / result.Price);
+            double inputRemain = result.InputValue - spentFromInput;
+            double sumToSpend = spentFromInput;
+            if(result.IsStateChanged) {
+                double spentFromReserve = 0;
+                switch(result.State) {
+                    case ResultState.S10:
+                        //   if(currentItem.State == ResultState.S0) {
+                        spentFromReserve = currentItem.ReserveAll * 0.3;
+                        result.ReserveChange -= spentFromReserve;
+                        currentItem.ReserveAll -= spentFromReserve;
+                        // }
+                        break;
+                }
+                sumToSpend = spentFromInput + spentFromReserve;
+            }
+            result.ReserveChange += inputRemain;
+            result.ReserveAll += inputRemain;
+
+            int sharesToBuyCount = (int)Math.Floor(sumToSpend / result.Price);
             result.AddedShares = sharesToBuyCount;
             result.SharesCount = currentItem.SharesCount + sharesToBuyCount;
 
             double spentCash = sharesToBuyCount * result.Price;
-            double remainCash = result.InputValue - spentCash;
+            double remainCash = sumToSpend - spentCash;
 
-            result.ReserveChange = remainCash;
-            result.ReserveAll = currentItem.ReserveAll + remainCash;
+            result.ReserveChange += remainCash;
+            result.ReserveAll = currentItem.ReserveAll + result.ReserveChange;
 
 
             return result;
