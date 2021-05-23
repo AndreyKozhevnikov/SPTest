@@ -238,16 +238,27 @@ namespace SpTest.Tests {
             Assert.AreEqual(false, res.IsStateDown);
         }
         [Test]
-        public void ProcessLine_SharesAdded() {
+        public void ProcessLine_SharesChange() {
             //arrange
             var analyzer = CreateAnalyzer();
-            var currentItem = CreateResultItem();
+            var currentItem = CreateResultItem(100);
             var inputLine = CreateDataItem(100);
-            currentItem.Result = 500;
             //act
             var res = analyzer.ProcessLine(inputLine, currentItem, 1000);
             //assert
-            Assert.AreEqual(1500, res.Result);
+            Assert.AreEqual(7, res.SharesChange);
+        }
+        [Test]
+        public void ProcessLine_SharesAll() {
+            //arrange
+            var analyzer = CreateAnalyzer();
+            var currentItem = CreateResultItem(100);
+            var inputLine = CreateDataItem(100);
+            currentItem.SharesAll = 20;
+            //act
+            var res = analyzer.ProcessLine(inputLine, currentItem, 1000);
+            //assert
+            Assert.AreEqual(27, res.SharesAll);
         }
     }
 }
