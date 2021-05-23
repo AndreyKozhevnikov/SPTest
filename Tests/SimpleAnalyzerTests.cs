@@ -13,12 +13,12 @@ namespace SpTest.Tests {
         public void ProcessLine_Date() {
             //arrange
             var analyzer = CreateAnalyzer();
-            var currentItem = CreateResultItem();
+            var prevResult = CreateResultItem();
             var inputLine = CreateDataItem();
             inputLine.Date = new DateTime(2021, 5, 22);
 
             //act
-            var res = analyzer.ProcessLine(inputLine, currentItem, 100);
+            var res = analyzer.ProcessLine(inputLine, prevResult, 100);
             //assert
             Assert.AreEqual(new DateTime(2021, 5, 22), res.Date);
         }
@@ -26,11 +26,11 @@ namespace SpTest.Tests {
         public void ProcessLine_Price() {
             //arrange
             var analyzer = CreateAnalyzer();
-            var currentItem = CreateResultItem();
+            var prevResult = CreateResultItem();
             var inputLine = CreateDataItem();
             inputLine.Price = 55;
             //act
-            var res = analyzer.ProcessLine(inputLine, currentItem, 100);
+            var res = analyzer.ProcessLine(inputLine, prevResult, 100);
             //assert
             Assert.AreEqual(55, res.Price);
         }
@@ -38,12 +38,12 @@ namespace SpTest.Tests {
         public void ProcessLine_MaxPrice() {
             //arrange
             var analyzer = CreateAnalyzer();
-            var currentItem = CreateResultItem();
+            var prevResult = CreateResultItem();
             var inputLine = CreateDataItem();
-            currentItem.MaxPrice = 150;
+            prevResult.MaxPrice = 150;
             inputLine.Price = 160;
             //act
-            var res = analyzer.ProcessLine(inputLine, currentItem, 100);
+            var res = analyzer.ProcessLine(inputLine, prevResult, 100);
             //assert
             Assert.AreEqual(160, res.Price);
         }
@@ -51,13 +51,13 @@ namespace SpTest.Tests {
         public void ProcessLine_MaxPriceDate() {
             //arrange
             var analyzer = CreateAnalyzer();
-            var currentItem = CreateResultItem();
+            var prevResult = CreateResultItem();
             var inputLine = CreateDataItem();
-            currentItem.MaxPrice = 150;
+            prevResult.MaxPrice = 150;
             inputLine.Price = 160;
             inputLine.Date = new DateTime(2021, 5, 28);
             //act
-            var res = analyzer.ProcessLine(inputLine, currentItem, 100);
+            var res = analyzer.ProcessLine(inputLine, prevResult, 100);
             //assert
             Assert.AreEqual(new DateTime(2021, 5, 28), res.MaxPriceDate);
         }
@@ -65,13 +65,13 @@ namespace SpTest.Tests {
         public void ProcessLine_Drawdown() {
             //arrange
             var analyzer = CreateAnalyzer();
-            var currentItem = CreateResultItem();
+            var prevResult = CreateResultItem();
             var inputLine = CreateDataItem();
-            currentItem.MaxPrice = 100;
+            prevResult.MaxPrice = 100;
             inputLine.Price = 87.253;
 
             //act
-            var res = analyzer.ProcessLine(inputLine, currentItem, 100);
+            var res = analyzer.ProcessLine(inputLine, prevResult, 100);
             //assert
             Assert.AreEqual(12.747, res.PriceDrawdown);
         }
@@ -79,13 +79,13 @@ namespace SpTest.Tests {
         public void ProcessLine_Drawdown_1() {
             //arrange
             var analyzer = CreateAnalyzer();
-            var currentItem = CreateResultItem();
+            var prevResult = CreateResultItem();
             var inputLine = CreateDataItem();
-            currentItem.MaxPrice = 100;
+            prevResult.MaxPrice = 100;
             inputLine.Price = 187.253;
 
             //act
-            var res = analyzer.ProcessLine(inputLine, currentItem, 100);
+            var res = analyzer.ProcessLine(inputLine, prevResult, 100);
             //assert
             Assert.AreEqual(0, res.PriceDrawdown);
         }
@@ -93,14 +93,14 @@ namespace SpTest.Tests {
         public void ProcessLine_MaxDrawdown() {
             //arrange
             var analyzer = CreateAnalyzer();
-            var currentItem = CreateResultItem();
+            var prevResult = CreateResultItem();
             var inputLine = CreateDataItem();
-            currentItem.MaxPrice = 100;
-            currentItem.MaxPriceDrawdown = 4.12;
+            prevResult.MaxPrice = 100;
+            prevResult.MaxPriceDrawdown = 4.12;
             inputLine.Price = 87.253;
 
             //act
-            var res = analyzer.ProcessLine(inputLine, currentItem, 100);
+            var res = analyzer.ProcessLine(inputLine, prevResult, 100);
             //assert
             Assert.AreEqual(12.747, res.MaxPriceDrawdown);
         }
@@ -108,14 +108,14 @@ namespace SpTest.Tests {
         public void ProcessLine_MaxDrawdownDate() {
             //arrange
             var analyzer = CreateAnalyzer();
-            var currentItem = CreateResultItem();
+            var prevResult = CreateResultItem();
             var inputLine = CreateDataItem();
-            currentItem.MaxPrice = 100;
-            currentItem.MaxPriceDrawdown = 4.12;
+            prevResult.MaxPrice = 100;
+            prevResult.MaxPriceDrawdown = 4.12;
             inputLine.Price = 87.253;
 
             //act
-            var res = analyzer.ProcessLine(inputLine, currentItem, 100);
+            var res = analyzer.ProcessLine(inputLine, prevResult, 100);
             //assert
             Assert.AreEqual(new DateTime(2021, 5, 20), res.MaxPriceDrawdownDate);
         }
@@ -123,10 +123,10 @@ namespace SpTest.Tests {
         public void ProcessLine_InputValue() {
             //arrange
             var analyzer = CreateAnalyzer();
-            var currentItem = CreateResultItem();
+            var prevResult = CreateResultItem();
             var inputLine = CreateDataItem();
             //act
-            var res = analyzer.ProcessLine(inputLine, currentItem, 77);
+            var res = analyzer.ProcessLine(inputLine, prevResult, 77);
             //assert
             Assert.AreEqual(77, res.InputValue);
         }
@@ -134,12 +134,12 @@ namespace SpTest.Tests {
         public void ProcessLine_State0() {
             //arrange
             var analyzer = CreateAnalyzer();
-            var currentItem = CreateResultItem();
+            var prevResult = CreateResultItem();
             var inputLine = CreateDataItem();
-            currentItem.MaxPrice = 100;
+            prevResult.MaxPrice = 100;
             inputLine.Price = 110;
             //act
-            var res = analyzer.ProcessLine(inputLine, currentItem, 77);
+            var res = analyzer.ProcessLine(inputLine, prevResult, 77);
             //assert
             Assert.AreEqual(ResultState.S0, res.State);
         }
@@ -147,12 +147,12 @@ namespace SpTest.Tests {
         public void ProcessLine_State0_1() {
             //arrange
             var analyzer = CreateAnalyzer();
-            var currentItem = CreateResultItem();
+            var prevResult = CreateResultItem();
             var inputLine = CreateDataItem();
-            currentItem.MaxPrice = 100;
+            prevResult.MaxPrice = 100;
             inputLine.Price = 95;
             //act
-            var res = analyzer.ProcessLine(inputLine, currentItem, 77);
+            var res = analyzer.ProcessLine(inputLine, prevResult, 77);
             //assert
             Assert.AreEqual(ResultState.S0, res.State);
         }
@@ -160,12 +160,12 @@ namespace SpTest.Tests {
         public void ProcessLine_State10() {
             //arrange
             var analyzer = CreateAnalyzer();
-            var currentItem = CreateResultItem();
+            var prevResult = CreateResultItem();
             var inputLine = CreateDataItem();
-            currentItem.MaxPrice = 100;
+            prevResult.MaxPrice = 100;
             inputLine.Price = 89;
             //act
-            var res = analyzer.ProcessLine(inputLine, currentItem, 77);
+            var res = analyzer.ProcessLine(inputLine, prevResult, 77);
             //assert
             Assert.AreEqual(ResultState.S10, res.State);
         }
@@ -173,12 +173,12 @@ namespace SpTest.Tests {
         public void ProcessLine_State20() {
             //arrange
             var analyzer = CreateAnalyzer();
-            var currentItem = CreateResultItem();
+            var prevResult = CreateResultItem();
             var inputLine = CreateDataItem();
-            currentItem.MaxPrice = 100;
+            prevResult.MaxPrice = 100;
             inputLine.Price = 75;
             //act
-            var res = analyzer.ProcessLine(inputLine, currentItem, 77);
+            var res = analyzer.ProcessLine(inputLine, prevResult, 77);
             //assert
             Assert.AreEqual(ResultState.S20, res.State);
         }
@@ -186,12 +186,12 @@ namespace SpTest.Tests {
         public void ProcessLine_State30() {
             //arrange
             var analyzer = CreateAnalyzer();
-            var currentItem = CreateResultItem();
+            var prevResult = CreateResultItem();
             var inputLine = CreateDataItem();
-            currentItem.MaxPrice = 100;
+            prevResult.MaxPrice = 100;
             inputLine.Price = 54;
             //act
-            var res = analyzer.ProcessLine(inputLine, currentItem, 77);
+            var res = analyzer.ProcessLine(inputLine, prevResult, 77);
             //assert
             Assert.AreEqual(ResultState.S30, res.State);
         }
@@ -199,13 +199,13 @@ namespace SpTest.Tests {
         public void ProcessLine_IsStateChanged() {
             //arrange
             var analyzer = CreateAnalyzer();
-            var currentItem = CreateResultItem();
+            var prevResult = CreateResultItem();
             var inputLine = CreateDataItem();
-            currentItem.MaxPrice = 100;
-            currentItem.State = ResultState.S30;
+            prevResult.MaxPrice = 100;
+            prevResult.State = ResultState.S30;
             inputLine.Price = 54;
             //act
-            var res = analyzer.ProcessLine(inputLine, currentItem, 77);
+            var res = analyzer.ProcessLine(inputLine, prevResult, 77);
             //assert
             Assert.AreEqual(false, res.IsStateDown);
         }
@@ -213,13 +213,13 @@ namespace SpTest.Tests {
         public void ProcessLine_IsStateChanged_1() {
             //arrange
             var analyzer = CreateAnalyzer();
-            var currentItem = CreateResultItem();
+            var prevResult = CreateResultItem();
             var inputLine = CreateDataItem();
-            currentItem.MaxPrice = 100;
-            currentItem.State = ResultState.S20;
+            prevResult.MaxPrice = 100;
+            prevResult.State = ResultState.S20;
             inputLine.Price = 54;
             //act
-            var res = analyzer.ProcessLine(inputLine, currentItem, 77);
+            var res = analyzer.ProcessLine(inputLine, prevResult, 77);
             //assert
             Assert.AreEqual(true, res.IsStateDown);
         }
@@ -227,13 +227,13 @@ namespace SpTest.Tests {
         public void ProcessLine_IsStateChanged_2fromS10toS0() {
             //arrange
             var analyzer = CreateAnalyzer();
-            var currentItem = CreateResultItem();
+            var prevResult = CreateResultItem();
             var inputLine = CreateDataItem();
-            currentItem.MaxPrice = 100;
-            currentItem.State = ResultState.S10;
+            prevResult.MaxPrice = 100;
+            prevResult.State = ResultState.S10;
             inputLine.Price = 154;
             //act
-            var res = analyzer.ProcessLine(inputLine, currentItem, 77);
+            var res = analyzer.ProcessLine(inputLine, prevResult, 77);
             //assert
             Assert.AreEqual(false, res.IsStateDown);
         }
@@ -241,10 +241,10 @@ namespace SpTest.Tests {
         public void ProcessLine_SharesChange() {
             //arrange
             var analyzer = CreateAnalyzer();
-            var currentItem = CreateResultItem(100);
+            var prevResult = CreateResultItem(100);
             var inputLine = CreateDataItem(100);
             //act
-            var res = analyzer.ProcessLine(inputLine, currentItem, 1000);
+            var res = analyzer.ProcessLine(inputLine, prevResult, 1000);
             //assert
             Assert.AreEqual(7, res.SharesChange);
         }
@@ -252,11 +252,11 @@ namespace SpTest.Tests {
         public void ProcessLine_SharesAll() {
             //arrange
             var analyzer = CreateAnalyzer();
-            var currentItem = CreateResultItem(100);
+            var prevResult = CreateResultItem(100);
             var inputLine = CreateDataItem(100);
-            currentItem.SharesAll = 20;
+            prevResult.SharesAll = 20;
             //act
-            var res = analyzer.ProcessLine(inputLine, currentItem, 1000);
+            var res = analyzer.ProcessLine(inputLine, prevResult, 1000);
             //assert
             Assert.AreEqual(27, res.SharesAll);
         }
