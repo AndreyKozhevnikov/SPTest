@@ -45,7 +45,20 @@ namespace SpTest.Tests {
             //act
             var res = analyzer.ProcessLine(inputLine, prevResult, 100);
             //assert
-            Assert.AreEqual(160, res.Price);
+            Assert.AreEqual(160, res.MaxPrice);
+        }
+        [Test]
+        public void ProcessLine_MaxPrice_1() {
+            //arrange
+            var analyzer = CreateAnalyzer();
+            var prevResult = CreateResultItem(109.32);
+            var inputLine = CreateDataItem(109.32);
+            prevResult.MaxPrice = 109.32;
+            
+            //act
+            var res = analyzer.ProcessLine(inputLine, prevResult, 100);
+            //assert
+            Assert.AreEqual(109.32, res.MaxPrice);
         }
         [Test]
         public void ProcessLine_MaxPriceDate() {
@@ -60,6 +73,21 @@ namespace SpTest.Tests {
             var res = analyzer.ProcessLine(inputLine, prevResult, 100);
             //assert
             Assert.AreEqual(new DateTime(2021, 5, 28), res.MaxPriceDate);
+        }
+        [Test]
+        public void ProcessLine_MaxPriceDate_1() {
+            //arrange
+            var analyzer = CreateAnalyzer();
+            var prevResult = CreateResultItem();
+            var inputLine = CreateDataItem();
+            prevResult.MaxPrice = 150;
+            prevResult.MaxPriceDate = new DateTime(2021, 2, 2);
+            inputLine.Price = 150;
+            inputLine.Date = new DateTime(2021, 5, 28);
+            //act
+            var res = analyzer.ProcessLine(inputLine, prevResult, 100);
+            //assert
+            Assert.AreEqual(new  DateTime(2021, 2, 2), res.MaxPriceDate);
         }
         [Test]
         public void ProcessLine_Drawdown() {
@@ -105,6 +133,36 @@ namespace SpTest.Tests {
             Assert.AreEqual(12.747, res.MaxPriceDrawdown);
         }
         [Test]
+        public void ProcessLine_MaxDrawdown_1() {
+            //arrange
+            var analyzer = CreateAnalyzer();
+            var prevResult = CreateResultItem();
+            var inputLine = CreateDataItem();
+            prevResult.MaxPrice = 100;
+            prevResult.MaxPriceDrawdown = 14.12;
+            inputLine.Price = 87.253;
+
+            //act
+            var res = analyzer.ProcessLine(inputLine, prevResult, 100);
+            //assert
+            Assert.AreEqual(14.12, res.MaxPriceDrawdown);
+        }
+        [Test]
+        public void ProcessLine_MaxDrawdown_2() {
+            //arrange
+            var analyzer = CreateAnalyzer();
+            var prevResult = CreateResultItem();
+            var inputLine = CreateDataItem();
+            prevResult.MaxPrice = 100;
+            prevResult.MaxPriceDrawdown = 14.12;
+            inputLine.Price = 187.253;
+
+            //act
+            var res = analyzer.ProcessLine(inputLine, prevResult, 100);
+            //assert
+            Assert.AreEqual(14.12, res.MaxPriceDrawdown);
+        }
+        [Test]
         public void ProcessLine_MaxDrawdownDate() {
             //arrange
             var analyzer = CreateAnalyzer();
@@ -118,6 +176,37 @@ namespace SpTest.Tests {
             var res = analyzer.ProcessLine(inputLine, prevResult, 100);
             //assert
             Assert.AreEqual(new DateTime(2021, 5, 20), res.MaxPriceDrawdownDate);
+        }
+        [Test]
+        public void ProcessLine_MaxDrawdownDate_1() {
+            //arrange
+            var analyzer = CreateAnalyzer();
+            var prevResult = CreateResultItem();
+            var inputLine = CreateDataItem();
+            prevResult.MaxPrice = 100;
+            prevResult.MaxPriceDrawdown = 14.12;
+            prevResult.MaxPriceDrawdownDate = new DateTime(2020, 1, 4);
+            inputLine.Price = 87.253;
+
+            //act
+            var res = analyzer.ProcessLine(inputLine, prevResult, 100);
+            //assert
+            Assert.AreEqual(new DateTime(2020, 1, 4), res.MaxPriceDrawdownDate);
+        }
+        [Test]
+        public void ProcessLine_MaxDrawdownDate_2() {
+            //arrange
+            var analyzer = CreateAnalyzer();
+            var prevResult = CreateResultItem();
+            var inputLine = CreateDataItem();
+            prevResult.MaxPrice = 100;
+            prevResult.MaxPriceDrawdown = 14.12;
+            inputLine.Price = 187.253;
+            prevResult.MaxPriceDrawdownDate = new DateTime(2020, 1, 4);
+            //act
+            var res = analyzer.ProcessLine(inputLine, prevResult, 100);
+            //assert
+            Assert.AreEqual(new DateTime(2020, 1, 4), res.MaxPriceDrawdownDate);
         }
         [Test]
         public void ProcessLine_InputValue() {

@@ -23,17 +23,21 @@ namespace SpTest.Classes {
         public ResultItem ProcessLine(DataItem inputLine, ResultItem prevResult, double inputSum) {
             var currResult = new ResultItem(inputLine.Date, inputLine.Price);
             currResult.ReserveAll = prevResult.ReserveAll;
+            currResult.MaxPrice = prevResult.MaxPrice;
+            currResult.MaxPriceDate = prevResult.MaxPriceDate;
             if(inputLine.Price > prevResult.MaxPrice) {
                 currResult.MaxPrice = inputLine.Price;
                 currResult.MaxPriceDate = inputLine.Date;
             }
+            currResult.MaxPriceDrawdown = prevResult.MaxPriceDrawdown;
+            currResult.MaxPriceDrawdownDate = prevResult.MaxPriceDrawdownDate;
             if(inputLine.Price < prevResult.MaxPrice) {
                 double diff = prevResult.MaxPrice - inputLine.Price;
                 currResult.PriceDrawdown = (diff / prevResult.MaxPrice) * 100;
                 if(currResult.PriceDrawdown > prevResult.MaxPriceDrawdown) {
                     currResult.MaxPriceDrawdown = currResult.PriceDrawdown;
                     currResult.MaxPriceDrawdownDate = inputLine.Date;
-                }
+                } 
                 if(currResult.PriceDrawdown >= 10 && currResult.PriceDrawdown < 20) {
                     currResult.State = ResultState.S10;
                 } else if(currResult.PriceDrawdown >= 20 && currResult.PriceDrawdown < 30) {
