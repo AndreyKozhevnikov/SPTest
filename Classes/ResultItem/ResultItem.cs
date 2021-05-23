@@ -23,8 +23,8 @@ namespace SpTest.Classes {
         public bool IsStateDown { get; set; }
         public double ReserveAll { get; set; }
         public double ReserveChange { get; set; }
-        public int SharesCount { get; set; }
-        public int AddedShares { get; set; }
+        public int SharesAll { get; set; }
+        public int SharesChange { get; set; }
         public double Result { get; set; }
         public double MaxResult { get; set; }
         public DateTime MaxResultDate { get; set; }

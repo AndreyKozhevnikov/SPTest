@@ -91,8 +91,8 @@ namespace SpTest.Classes {
             currResult.ReserveAll += inputRemain;
 
             int sharesToBuyCount = (int)Math.Floor(sumToSpend / currResult.Price);
-            currResult.AddedShares = sharesToBuyCount;
-            currResult.SharesCount = prevResult.SharesCount + sharesToBuyCount;
+            currResult.SharesChange = sharesToBuyCount;
+            currResult.SharesAll = prevResult.SharesAll + sharesToBuyCount;
 
             double spentCash = sharesToBuyCount * currResult.Price;
             double remainCash = sumToSpend - spentCash;

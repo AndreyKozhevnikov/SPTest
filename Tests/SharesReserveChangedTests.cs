@@ -16,7 +16,7 @@ namespace SpTest.Tests {
             //act
             var res = analyzer.ProcessLine(inputLine, prevResult, 500);
             //assert
-            Assert.AreEqual(35, res.AddedShares);
+            Assert.AreEqual(35, res.SharesChange);
         }
         [Test]
         public void ProcessLine_SharesAdded_S0_1() {
@@ -28,7 +28,7 @@ namespace SpTest.Tests {
             //act
             var res = analyzer.ProcessLine(inputLine, prevResult, 5000);
             //assert
-            Assert.AreEqual(35, res.AddedShares);
+            Assert.AreEqual(35, res.SharesChange);
         }
         [Test]
         public void ProcessLine_ReserveChange_S0_0() {
@@ -67,7 +67,7 @@ namespace SpTest.Tests {
             //act
             var res = analyzer.ProcessLine(inputLine, prevResult, 5000);
             //assert
-            Assert.AreEqual(40, res.AddedShares);
+            Assert.AreEqual(40, res.SharesChange);
         }
         [Test]
         public void ProcessLine_ReserveChange_S10_plain() {
@@ -94,7 +94,7 @@ namespace SpTest.Tests {
             //act
             var res = analyzer.ProcessLine(inputLine, prevResult, 5000);
             //assert
-            Assert.AreEqual(50, res.AddedShares);
+            Assert.AreEqual(50, res.SharesChange);
         }
         [Test]
         public void ProcessLine_ReserveChange_S10_changeFromS0() {
@@ -122,7 +122,7 @@ namespace SpTest.Tests {
             //act
             var res = analyzer.ProcessLine(inputLine, prevResult, 5000);
             //assert
-            Assert.AreEqual(40, res.AddedShares);
+            Assert.AreEqual(40, res.SharesChange);
         }
         [Test]
         public void ProcessLine_ReserveChange_S10_changeFromS20() {
@@ -151,7 +151,7 @@ namespace SpTest.Tests {
             //act
             var res = analyzer.ProcessLine(inputLine, prevResult, 5000);
             //assert
-            Assert.AreEqual(45, res.AddedShares);
+            Assert.AreEqual(45, res.SharesChange);
         }
         [Test]
         public void ProcessLine_ReserveChange_S20_plain() {
@@ -179,7 +179,7 @@ namespace SpTest.Tests {
             //act
             var res = analyzer.ProcessLine(inputLine, prevResult, 5000);
             //assert
-            Assert.AreEqual(65, res.AddedShares);
+            Assert.AreEqual(65, res.SharesChange);
         }
         [Test]
         public void ProcessLine_ReserveChange_S20_changeFromS0() {
@@ -207,7 +207,7 @@ namespace SpTest.Tests {
             //act
             var res = analyzer.ProcessLine(inputLine, prevResult, 5000);
             //assert
-            Assert.AreEqual(75, res.AddedShares);
+            Assert.AreEqual(75, res.SharesChange);
         }
         [Test]
         public void ProcessLine_ReserveChange_S20_changeFromS10() {
@@ -235,7 +235,7 @@ namespace SpTest.Tests {
             //act
             var res = analyzer.ProcessLine(inputLine, prevResult, 5000);
             //assert
-            Assert.AreEqual(110, res.AddedShares);
+            Assert.AreEqual(110, res.SharesChange);
         }
         [Test]
         public void ProcessLine_ReserveChange_S30_change() {
@@ -264,7 +264,7 @@ namespace SpTest.Tests {
             //act
             var res = analyzer.ProcessLine(inputLine, prevResult, 5000);
             //assert
-            Assert.AreEqual(50, res.AddedShares);
+            Assert.AreEqual(50, res.SharesChange);
         }
         [Test]
         public void ProcessLine_ReserveChange_S30_plain() {
@@ -286,12 +286,12 @@ namespace SpTest.Tests {
             var analyzer = CreateAnalyzer();
             var prevResult = CreateResultItem(9);
             var inputLine = CreateDataItem(100);
-            prevResult.SharesCount = 20;
+            prevResult.SharesAll = 20;
             prevResult.MaxPrice = 90;
             //act
             var res = analyzer.ProcessLine(inputLine, prevResult, 5000);
             //assert
-            Assert.AreEqual(55, res.SharesCount);
+            Assert.AreEqual(55, res.SharesAll);
         }
 
         [Test]

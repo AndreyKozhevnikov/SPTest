@@ -22,8 +22,8 @@ namespace SpTest.Tests {
             item.InputValue = 44;
             item.State = ResultState.S20;
             item.IsStateDown = true;
-            item.SharesCount = 3;
-            item.AddedShares = 4;
+            item.SharesAll = 3;
+            item.SharesChange = 4;
             item.ReserveAll = 6.6;
             item.ReserveChange = 8.8;
             item.Result = 2.2;
@@ -72,8 +72,8 @@ namespace SpTest.Tests {
             resV.Add("IsStateDown");
             resV.Add("ReserveAll");
             resV.Add("ReserveChange");
-            resV.Add("SharesCount");
-            resV.Add("AddedShares");
+            resV.Add("SharesAll");
+            resV.Add("SharesChange");
             resV.Add("Result");
             resV.Add("MaxResult");
             resV.Add("MaxResultDate");
