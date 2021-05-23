@@ -100,6 +100,8 @@ namespace SpTest.Classes {
             currResult.ReserveChange += remainCash;
             currResult.ReserveAll += remainCash;
 
+            currResult.Result = currResult.SharesAll * inputLine.Price + currResult.ReserveAll;
+
 
             return currResult;
         }

@@ -260,5 +260,18 @@ namespace SpTest.Tests {
             //assert
             Assert.AreEqual(27, res.SharesAll);
         }
+        [Test]
+        public void ProcessLine_Result() {
+            //arrange
+            var analyzer = CreateAnalyzer();
+            var prevResult = CreateResultItem(100);
+            var inputLine = CreateDataItem(100);
+            prevResult.SharesAll = 100;
+            prevResult.ReserveAll = 800;
+            //act
+            var res = analyzer.ProcessLine(inputLine, prevResult, 1000);
+            //assert
+            Assert.AreEqual(11800, res.Result); //(sharesall+sharesinput)/price + reserveall+reserveinput
+        }
     }
 }
