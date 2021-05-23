@@ -108,6 +108,14 @@ namespace SpTest.Classes {
                 currResult.MaxResult = prevResult.MaxResult;
                 currResult.MaxResultDate = prevResult.MaxResultDate;
             }
+            currResult.ResultDrawdown = currResult.MaxResult - currResult.Result;
+            if(currResult.ResultDrawdown > prevResult.MaxResultDrawdown) {
+                currResult.MaxResultDrawdown = currResult.ResultDrawdown;
+                currResult.MaxResultDrawdownDate = currResult.Date;
+            } else {
+                currResult.MaxResultDrawdown = prevResult.MaxResultDrawdown;
+                currResult.MaxResultDrawdownDate = prevResult.MaxResultDrawdownDate;
+            }
 
             return currResult;
         }

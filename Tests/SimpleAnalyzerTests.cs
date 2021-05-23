@@ -285,7 +285,7 @@ namespace SpTest.Tests {
             //act
             var res = analyzer.ProcessLine(inputLine, prevResult, 1000);
             //assert
-            Assert.AreEqual(11800, res.MaxResult); //(sharesall+sharesinput)/price + reserveall+reserveinput
+            Assert.AreEqual(11800, res.MaxResult); 
         }
         [Test]
         public void ProcessLine_MaxResult_1() {
@@ -299,7 +299,7 @@ namespace SpTest.Tests {
             //act
             var res = analyzer.ProcessLine(inputLine, prevResult, 1000);
             //assert
-            Assert.AreEqual(500000, res.MaxResult); //(sharesall+sharesinput)/price + reserveall+reserveinput
+            Assert.AreEqual(500000, res.MaxResult); 
         }
         [Test]
         public void ProcessLine_MaxResultDate() {
@@ -314,7 +314,7 @@ namespace SpTest.Tests {
             //act
             var res = analyzer.ProcessLine(inputLine, prevResult, 1000);
             //assert
-            Assert.AreEqual(new DateTime(2021,5,23), res.MaxResultDate); //(sharesall+sharesinput)/price + reserveall+reserveinput
+            Assert.AreEqual(new DateTime(2021,5,23), res.MaxResultDate); 
         }
         [Test]
         public void ProcessLine_MaxResultDate_1() {
@@ -330,7 +330,89 @@ namespace SpTest.Tests {
             //act
             var res = analyzer.ProcessLine(inputLine, prevResult, 1000);
             //assert
-            Assert.AreEqual(new DateTime(2021, 2, 4), res.MaxResultDate); //(sharesall+sharesinput)/price + reserveall+reserveinput
+            Assert.AreEqual(new DateTime(2021, 2, 4), res.MaxResultDate); 
+        }
+        [Test]
+        public void ProcessLine_ResultDD() {
+            //arrange
+            var analyzer = CreateAnalyzer();
+            var prevResult = CreateResultItem(100);
+            var inputLine = CreateDataItem(100);
+            prevResult.SharesAll = 100;
+            prevResult.ReserveAll = 800;
+            prevResult.MaxResult = 50000;
+            //act
+            var res = analyzer.ProcessLine(inputLine, prevResult, 1000);
+            //assert
+            Assert.AreEqual(38200, res.ResultDrawdown); 
+        }
+        [Test]
+        public void ProcessLine_MaxResultDD() {
+            //arrange
+            var analyzer = CreateAnalyzer();
+            var prevResult = CreateResultItem(100);
+            var inputLine = CreateDataItem(100);
+            prevResult.SharesAll = 100;
+            prevResult.ReserveAll = 800;
+            prevResult.MaxResult = 50000;
+            prevResult.MaxResultDrawdown = 20000;
+            //act
+            var res = analyzer.ProcessLine(inputLine, prevResult, 1000);
+            //assert
+            Assert.AreEqual(38200, res.MaxResultDrawdown); 
+        }
+        [Test]
+        public void ProcessLine_MaxResultDD_1() {
+            //arrange
+            var analyzer = CreateAnalyzer();
+            var prevResult = CreateResultItem(100);
+            var inputLine = CreateDataItem(100);
+            prevResult.SharesAll = 100;
+            prevResult.ReserveAll = 800;
+            prevResult.MaxResult = 50000;
+            prevResult.MaxResultDrawdown = 200000;
+            //act
+            var res = analyzer.ProcessLine(inputLine, prevResult, 1000);
+            //assert
+            Assert.AreEqual(200000, res.MaxResultDrawdown); 
+        }
+        [Test]
+        public void ProcessLine_MaxResultDDDate() {
+            //arrange
+            var analyzer = CreateAnalyzer();
+            var prevResult = CreateResultItem(100);
+            var inputLine = CreateDataItem(100);
+            
+            prevResult.SharesAll = 100;
+            prevResult.ReserveAll = 800;
+            prevResult.MaxResult = 50000;
+            prevResult.MaxResultDrawdown = 20000;
+            prevResult.MaxResultDrawdownDate = new DateTime(2021, 4, 4);
+            inputLine.Date = new DateTime(2021, 5, 22);
+
+            //act
+            var res = analyzer.ProcessLine(inputLine, prevResult, 1000);
+            //assert
+            Assert.AreEqual(new DateTime(2021, 5, 22), res.MaxResultDrawdownDate); 
+        }
+        [Test]
+        public void ProcessLine_MaxResultDDDate_1() {
+            //arrange
+            var analyzer = CreateAnalyzer();
+            var prevResult = CreateResultItem(100);
+            var inputLine = CreateDataItem(100);
+
+            prevResult.SharesAll = 100;
+            prevResult.ReserveAll = 800;
+            prevResult.MaxResult = 50000;
+            prevResult.MaxResultDrawdown = 200000;
+            prevResult.MaxResultDrawdownDate = new DateTime(2021, 4, 4);
+            inputLine.Date = new DateTime(2021, 5, 22);
+
+            //act
+            var res = analyzer.ProcessLine(inputLine, prevResult, 1000);
+            //assert
+            Assert.AreEqual(new DateTime(2021, 4, 4), res.MaxResultDrawdownDate);
         }
     }
 }
