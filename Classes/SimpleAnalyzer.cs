@@ -101,7 +101,13 @@ namespace SpTest.Classes {
             currResult.ReserveAll += remainCash;
 
             currResult.Result = currResult.SharesAll * inputLine.Price + currResult.ReserveAll;
-
+            if(currResult.Result > prevResult.MaxResult) {
+                currResult.MaxResult = currResult.Result;
+                currResult.MaxResultDate = currResult.Date;
+            } else {
+                currResult.MaxResult = prevResult.MaxResult;
+                currResult.MaxResultDate = prevResult.MaxResultDate;
+            }
 
             return currResult;
         }

@@ -273,5 +273,64 @@ namespace SpTest.Tests {
             //assert
             Assert.AreEqual(11800, res.Result); //(sharesall+sharesinput)/price + reserveall+reserveinput
         }
+        [Test]
+        public void ProcessLine_MaxResult() {
+            //arrange
+            var analyzer = CreateAnalyzer();
+            var prevResult = CreateResultItem(100);
+            var inputLine = CreateDataItem(100);
+            prevResult.SharesAll = 100;
+            prevResult.ReserveAll = 800;
+            prevResult.MaxResult = 5000;
+            //act
+            var res = analyzer.ProcessLine(inputLine, prevResult, 1000);
+            //assert
+            Assert.AreEqual(11800, res.MaxResult); //(sharesall+sharesinput)/price + reserveall+reserveinput
+        }
+        [Test]
+        public void ProcessLine_MaxResult_1() {
+            //arrange
+            var analyzer = CreateAnalyzer();
+            var prevResult = CreateResultItem(100);
+            var inputLine = CreateDataItem(100);
+            prevResult.SharesAll = 100;
+            prevResult.ReserveAll = 800;
+            prevResult.MaxResult = 500000;
+            //act
+            var res = analyzer.ProcessLine(inputLine, prevResult, 1000);
+            //assert
+            Assert.AreEqual(500000, res.MaxResult); //(sharesall+sharesinput)/price + reserveall+reserveinput
+        }
+        [Test]
+        public void ProcessLine_MaxResultDate() {
+            //arrange
+            var analyzer = CreateAnalyzer();
+            var prevResult = CreateResultItem(100);
+            var inputLine = CreateDataItem(100);
+            inputLine.Date = new DateTime(2021, 5, 23);
+            prevResult.SharesAll = 100;
+            prevResult.ReserveAll = 800;
+            prevResult.MaxResult = 5000;
+            //act
+            var res = analyzer.ProcessLine(inputLine, prevResult, 1000);
+            //assert
+            Assert.AreEqual(new DateTime(2021,5,23), res.MaxResultDate); //(sharesall+sharesinput)/price + reserveall+reserveinput
+        }
+        [Test]
+        public void ProcessLine_MaxResultDate_1() {
+            //arrange
+            var analyzer = CreateAnalyzer();
+            var prevResult = CreateResultItem(100);
+            var inputLine = CreateDataItem(100);
+            inputLine.Date = new DateTime(2021, 5, 23);
+            prevResult.SharesAll = 100;
+            prevResult.ReserveAll = 800;
+            prevResult.MaxResult = 500000;
+            prevResult.MaxResultDate = new DateTime(2021, 2, 4);
+            //act
+            var res = analyzer.ProcessLine(inputLine, prevResult, 1000);
+            //assert
+            Assert.AreEqual(new DateTime(2021, 2, 4), res.MaxResultDate); //(sharesall+sharesinput)/price + reserveall+reserveinput
+        }
     }
 }
