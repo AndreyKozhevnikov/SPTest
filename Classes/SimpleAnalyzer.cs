@@ -121,6 +121,8 @@ namespace SpTest.Classes {
                 currResult.MaxResultDrawdownDate = prevResult.MaxResultDrawdownDate;
             }
 
+          //  currResult.ReserveAll = currResult.ReserveAll+currResult.ReserveAll * (0.03 / 12);
+
             return currResult;
         }
     }
