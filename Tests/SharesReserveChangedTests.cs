@@ -111,6 +111,20 @@ namespace SpTest.Tests {
             Assert.AreEqual(-1, Math.Floor(res.ReserveChange));
         }
         [Test]
+        public void ProcessLine_ReserveChange_S10_changeFromS0_1() {
+            //arrange
+            var analyzer = CreateAnalyzer();
+            var prevResult = CreateResultItem(113.66);
+            var inputLine = CreateDataItem(102.09);
+            prevResult.MaxPrice = 114.16;
+            prevResult.State = ResultState.S0;
+            prevResult.ReserveAll = 150437;
+            //act
+            var res = analyzer.ProcessLine(inputLine, prevResult, 50000);
+            //assert
+            Assert.AreEqual(-35041, Math.Floor(res.ReserveChange));
+        }
+        [Test]
         public void ProcessLine_SharesAdded_S10_changeFromS20() {
             //arrange
             var analyzer = CreateAnalyzer();
